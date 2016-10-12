@@ -1,4 +1,4 @@
-package xyz.habbes.democharge.activities;
+package xyz.habbes.democharge.activities.deals;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

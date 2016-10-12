@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import xyz.habbes.democharge.R;
+import xyz.habbes.democharge.activities.deals.DealsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
