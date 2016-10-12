@@ -1,4 +1,4 @@
-package xyz.habbes.democharge;
+package xyz.habbes.democharge.activities;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import xyz.habbes.democharge.R;
 
 public class MainActivity extends AppCompatActivity {
 
