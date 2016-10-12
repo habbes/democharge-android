@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ import xyz.habbes.democharge.core.models.Deal;
  * create an instance of this fragment.
  */
 public class DealsFragment extends Fragment {
-
+    public static final String TAG = "DEMOCHARGE/Deals";
     private RecyclerView dealsRecyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private DealsAdapter adapter;
@@ -62,6 +63,7 @@ public class DealsFragment extends Fragment {
         dealsRecyclerView.setLayoutManager(layoutManager);
         adapter = new DealsAdapter();
         dealsRecyclerView.setAdapter(adapter);
+        loadDeals();
     }
 
 
@@ -72,11 +74,14 @@ public class DealsFragment extends Fragment {
      * @version: 1
      */
     private void loadDeals(){
+        Log.d(TAG, "fetching deals");
         Deal.fetch().enqueue(new Callback<List<Deal>>() {
 
             @Override
             public void onResponse(Call<List<Deal>> call, Response<List<Deal>> response) {
                 List<Deal> deals = response.body();
+                Log.d(TAG, "Deals fetched");
+                ToastMessage.show(getContext(), deals.get(0).toString());
                 if(deals.size() == 0){
                     ToastMessage.show(getContext(), getResources().getString(R.string.no_deals_found));
                 }

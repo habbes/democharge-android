@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import xyz.habbes.democharge.R;
@@ -54,7 +55,9 @@ class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHolder> {
     }
 
     // default constructor
-    public DealsAdapter(){};
+    public DealsAdapter(){
+        this(new ArrayList<Deal>());
+    }
 
     /**
      * sets the data for the adapter
@@ -65,6 +68,7 @@ class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsViewHolder> {
      */
     public void setDataset(List<Deal> deals){
         dataset = deals;
+        notifyDataSetChanged();
     }
 
 

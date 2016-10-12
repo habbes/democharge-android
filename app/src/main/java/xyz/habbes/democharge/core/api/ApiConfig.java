@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ApiConfig {
     private static ApiService service;
-    public static final String BASE_URL = "http://4549020b.ngrok.io/";
+    public static final String BASE_URL = "http://4549020b.ngrok.io/api/";
 
     public static ApiService getService() {
         if(service == null){
