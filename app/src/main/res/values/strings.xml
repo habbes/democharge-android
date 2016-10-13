@@ -32,4 +32,10 @@
 
     <!-- preferences file keus -->
     <string name="login_preference_file">xyz.habbes.democharge.LOGIN_PREFERENCE_FILE_KEY</string>
+
+    <!-- wallet screen -->
+    <string name="label_balance">Your Balance</string>
+    <string name="action_load_wallet">Load Wallet</string>
+    <string name="prompt_amount">Amount</string>
+    <string name="label_recharge_wallet">Recharge Wallet</string>
 </resources>

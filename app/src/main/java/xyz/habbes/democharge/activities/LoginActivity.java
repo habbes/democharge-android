@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     // persist token
                     LoginService.saveLogin(getApplicationContext(), token);
-                    
+
                     ToastMessage.show(LoginActivity.this,
                             String.format(getResources().getString(R.string.message_welcome),
                                     token.user.name));

@@ -2,12 +2,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xyz.habbes.democharge.activities.WalletFragment">
+    tools:context="xyz.habbes.democharge.activities.WalletFragment"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginBottom="@dimen/activity_vertical_margin">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="My Wallet" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_balance"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                android:text="85"/>
+
+            <View style="@style/Divider" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/label_recharge_wallet"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <EditText
+                    android:id="@+id/walletAmountView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_amount"
+                    android:inputType="number"
+                    android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+            <Button
+                android:id="@+id/loadWalletButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/action_load_wallet"
+                android:textStyle="bold"/>
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
