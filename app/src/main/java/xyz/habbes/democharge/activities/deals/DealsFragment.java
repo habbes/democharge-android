@@ -81,11 +81,12 @@ public class DealsFragment extends Fragment {
             public void onResponse(Call<List<Deal>> call, Response<List<Deal>> response) {
                 List<Deal> deals = response.body();
                 Log.d(TAG, "Deals fetched");
-                ToastMessage.show(getContext(), deals.get(0).toString());
-                if(deals.size() == 0){
+                if(deals == null){
                     ToastMessage.show(getContext(), getResources().getString(R.string.no_deals_found));
                 }
-                adapter.setDataset(deals);
+                else {
+                    adapter.setDataset(deals);
+                }
             }
 
             @Override
