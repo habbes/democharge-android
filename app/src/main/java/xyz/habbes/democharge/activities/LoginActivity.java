@@ -3,10 +3,10 @@ package xyz.habbes.democharge.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private View registerLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        registerLink = findViewById(R.id.registerLinkLabel);
+        registerLink.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRegisterActivity();
             }
         });
 
@@ -107,6 +116,17 @@ public class LoginActivity extends AppCompatActivity {
                 ToastMessage.show(getApplicationContext(), t.getMessage());
             }
         });
+    }
+
+    /**
+     * starts the registration page activity
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    private void openRegisterActivity(){
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     /**

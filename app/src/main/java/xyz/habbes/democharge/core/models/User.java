@@ -11,6 +11,44 @@ import xyz.habbes.democharge.core.api.ApiConfig;
 public class User extends BaseModel {
     public String name;
     public String email;
+    public String password;
+
+    /**
+     * creates new user with specified details
+     * @param name
+     * @param email
+     * @param password
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    public User(String name, String email, String password){
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    /**
+     * creates user with given name and email
+     * @param name
+     * @param email
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    public User(String name, String email){
+        this(name, email, null);
+    }
+
+    /**
+     * creates new user with null fields
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    public User(){
+        this(null, null);
+    }
 
     @Override
     public String toString(){
@@ -39,7 +77,7 @@ public class User extends BaseModel {
      * @added 13.10.2016
      * @version 1
      */
-    public static Call<User> signUp(User user){
+    public static Call<User> register(User user){
         return ApiConfig.getService().createUser(user);
     }
 }
