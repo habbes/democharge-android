@@ -103,8 +103,9 @@ public class RegisterActivity extends AppCompatActivity {
                 else {
                     ToastMessage.show(getApplicationContext(),
                             getResources().getString(R.string.registration_successful));
-                    ToastMessage.show(getApplicationContext(),
-                            "Hello " + registeredUser);
+
+                    // go to log in
+                    openLoginActivity();
 
                 }
             }

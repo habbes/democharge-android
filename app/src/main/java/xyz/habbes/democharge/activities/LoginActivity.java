@@ -20,6 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.habbes.democharge.R;
+import xyz.habbes.democharge.activities.helpers.LoginService;
 import xyz.habbes.democharge.activities.helpers.ToastMessage;
 import xyz.habbes.democharge.core.models.AccessToken;
 import xyz.habbes.democharge.core.models.User;
@@ -74,6 +75,9 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        // go to main activity is user logged in
+        redirectIfLoggedIn();
     }
 
     /**
@@ -103,9 +107,14 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    User user = token.user;
-                    ToastMessage.show(getApplicationContext(), "Token ID: " + token.id);
-                    ToastMessage.show(getApplicationContext(), "User: " + user);
+                    // persist token
+                    LoginService.saveLogin(getApplicationContext(), token);
+                    
+                    ToastMessage.show(LoginActivity.this,
+                            String.format(getResources().getString(R.string.message_welcome),
+                                    token.user.name));
+                    // show main activity
+                    openMainActivity();
                 }
 
             }
@@ -127,6 +136,29 @@ public class LoginActivity extends AppCompatActivity {
     private void openRegisterActivity(){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+    }
+
+    /**
+     * starts the main activity
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    private void openMainActivity(){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * redirect to main activity if there is a user already logged in
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    private void redirectIfLoggedIn(){
+        if(LoginService.getCurrentToken(this) != null){
+            openMainActivity();
+        }
     }
 
     /**

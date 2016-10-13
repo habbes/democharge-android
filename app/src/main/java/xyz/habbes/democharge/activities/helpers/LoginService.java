@@ -101,8 +101,7 @@ public class LoginService {
      * @version 1
      */
     public static void logout(Context context){
-        SharedPreferences pref = getPreferences(context);
-        pref.edit().clear().commit();
+        getPreferences(context).edit().clear().commit();
     }
 
 }

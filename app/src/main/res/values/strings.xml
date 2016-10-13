@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Democharge</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="action_logout">Sign Out</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -28,6 +28,7 @@
 
     <string name="error_registration">Registration failed</string>
     <string name="registration_successful">Registration was successful</string>
+    <string name="message_welcome">Welcome, %1$s</string>
 
     <!-- preferences file keus -->
     <string name="login_preference_file">xyz.habbes.democharge.LOGIN_PREFERENCE_FILE_KEY</string>

@@ -1,5 +1,6 @@
 package xyz.habbes.democharge.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,7 @@ import android.view.View;
 
 import xyz.habbes.democharge.R;
 import xyz.habbes.democharge.activities.deals.DealsFragment;
+import xyz.habbes.democharge.activities.helpers.LoginService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // redirect to login if not user is logged in
+        redirectIfLoggedOut();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -73,6 +78,41 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * logs the current user out of the app
+     * and goes to the login screen
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    private void logout(){
+        LoginService.logout(this);
+        openLoginActivity();
+    }
+
+    /**
+     * redirect to login screen if no user is logged in
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    private void redirectIfLoggedOut(){
+        if(LoginService.getCurrentToken(this) == null){
+            openLoginActivity();
+        }
+    }
+
+    /**
+     * starts the login activity
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    private void openLoginActivity(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,6 +130,11 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.action_logout){
+            logout();
             return true;
         }
 
