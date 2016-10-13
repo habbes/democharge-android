@@ -28,4 +28,7 @@
 
     <string name="error_registration">Registration failed</string>
     <string name="registration_successful">Registration was successful</string>
+
+    <!-- preferences file keus -->
+    <string name="login_preference_file">xyz.habbes.democharge.LOGIN_PREFERENCE_FILE_KEY</string>
 </resources>
