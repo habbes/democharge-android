@@ -89,6 +89,7 @@ public class LoginService {
         String email = pref.getString(EMAIL_KEY, null);
         token.user = new User(name, email);
         token.user.id = pref.getString(USER_ID_KEY, null);
+        token.userId = token.user.id;
 
         return token;
     }

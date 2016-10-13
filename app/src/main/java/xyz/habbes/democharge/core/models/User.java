@@ -1,8 +1,11 @@
 package xyz.habbes.democharge.core.models;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import xyz.habbes.democharge.core.BaseModel;
 import xyz.habbes.democharge.core.api.ApiConfig;
+import xyz.habbes.democharge.core.helpers.ValueCallback;
 
 /**
  * User model
@@ -12,6 +15,8 @@ public class User extends BaseModel {
     public String name;
     public String email;
     public String password;
+    public Wallet wallet;
+    public AccessToken accessToken;
 
     /**
      * creates new user with specified details
@@ -79,5 +84,51 @@ public class User extends BaseModel {
      */
     public static Call<User> register(User user){
         return ApiConfig.getService().createUser(user);
+    }
+
+    /**
+     * fetch the user with the given id
+     * @param id
+     * @param accessToken the access token of the user
+     * @return
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    public static Call<User> getById(String id, String accessToken){
+        return ApiConfig.getService().getUserById(id, accessToken);
+    }
+
+    /**
+     * get user's wallet
+     * @param callback callback with methods to call when wallet has been found
+     * @author Habbes
+     * @added 13.10.2016
+     * @version 1
+     */
+    public void getWallet(final ValueCallback<Wallet> callback){
+        if(wallet != null){
+            callback.onValue(wallet);
+            return;
+        }
+
+        ApiConfig.getService().getUserWallet(id, accessToken.id).enqueue(new Callback<Wallet>() {
+            @Override
+            public void onResponse(Call<Wallet> call, Response<Wallet> response) {
+                Wallet fetchedWallet = response.body();
+                if(fetchedWallet == null){
+                    callback.onError(null);
+                }
+
+                wallet = fetchedWallet;
+                wallet.user = User.this;
+                callback.onValue(wallet);
+            }
+
+            @Override
+            public void onFailure(Call<Wallet> call, Throwable t) {
+                callback.onError(t);
+            }
+        });
     }
 }
